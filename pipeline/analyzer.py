@@ -4,8 +4,14 @@ a cluster of classified returns and generate actionable recommendations.
 Pattern: prompt chaining step 3 — receives routed clusters, outputs structured insights.
 """
 
-import json
+import json, re
 from openai import OpenAI
+
+
+def _parse_json(raw: str) -> dict:
+    """Strip markdown code fences then parse JSON."""
+    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.DOTALL)
+    return json.loads(cleaned)
 
 # Stronger model for judgment calls — synthesis and recommendations
 STRONG_MODEL = "anthropic/claude-sonnet-4.6"
@@ -70,7 +76,7 @@ def synthesize_cluster(client: OpenAI, category: str, rows: list[dict]) -> dict:
 
     raw = (response.choices[0].message.content or "").strip()
     try:
-        result = json.loads(raw)
+        result = _parse_json(raw)
     except json.JSONDecodeError:
         result = {
             "pattern_summary": raw[:200],
@@ -112,6 +118,6 @@ def summarize_sku(client: OpenAI, sku_id: str, rows: list[dict]) -> dict:
 
     raw = (response.choices[0].message.content or "").strip()
     try:
-        return json.loads(raw)
+        return _parse_json(raw)
     except json.JSONDecodeError:
         return {"sku_id": sku_id, "risk_summary": raw[:200], "priority": "MEDIUM"}

@@ -4,8 +4,14 @@ Pattern: prompt chaining — raw text → structured reason category + sub-label
 Evaluator pattern: low-confidence results get a second pass before reaching Neha.
 """
 
-import json
+import json, re
 from openai import OpenAI
+
+
+def _parse_json(raw: str) -> dict:
+    """Strip markdown code fences then parse JSON."""
+    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.DOTALL)
+    return json.loads(cleaned)
 
 # Cheap model for bulk work — classification and evaluation
 CHEAP_MODEL = "anthropic/claude-haiku-4.5"
@@ -77,7 +83,7 @@ def classify_return(client: OpenAI, row: dict) -> dict:
 
     raw = (response.choices[0].message.content or "").strip()
     try:
-        result = json.loads(raw)
+        result = _parse_json(raw)
     except json.JSONDecodeError:
         result = {"category": "UNCLEAR", "sub_label": "parse error", "confidence": 0, "brief_evidence": ""}
 
