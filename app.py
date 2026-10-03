@@ -51,6 +51,10 @@ def load_client() -> OpenAI | None:
     return OpenAI(
         base_url="https://openrouter.ai/api/v1",
         api_key=api_key,
+        default_headers={
+            "HTTP-Referer": "https://dhaga-returns-intelligence-gjb4edycvf6wmxypkyv4jq.streamlit.app/",
+            "X-Title": "Dhaga Returns Intelligence",
+        },
     )
 
 

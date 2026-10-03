@@ -8,7 +8,7 @@ import json
 from openai import OpenAI
 
 # Cheap model for bulk work — classification and evaluation
-CHEAP_MODEL = "anthropic/claude-3-haiku-20240307"
+CHEAP_MODEL = "anthropic/claude-haiku-4.5"
 
 REASON_CATEGORIES = [
     "FIT_SIZE",        # garment does not fit; size runs large/small vs size chart

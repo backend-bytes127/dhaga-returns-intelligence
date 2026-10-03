@@ -8,7 +8,7 @@ import json
 from openai import OpenAI
 
 # Stronger model for judgment calls — synthesis and recommendations
-STRONG_MODEL = "anthropic/claude-3-5-sonnet"
+STRONG_MODEL = "anthropic/claude-sonnet-4.6"
 
 SYNTHESIS_PROMPT = """You are a returns analyst presenting findings to Neha (Category Head) at Dhaga & Co.
 
