@@ -74,7 +74,7 @@ def slide_title(prs):
     add_text(s, "What's hiding in the Other box",
              Inches(0.8), Inches(3.1), Inches(11), Inches(0.8),
              size=28, colour=LIGHT_GREY, align=PP_ALIGN.CENTER)
-    add_text(s, "Group 4  ·  Sat 3 Oct  ·  5:45 PM",
+    add_text(s, "Group 4",
              Inches(0.8), Inches(5.8), Inches(11), Inches(0.5),
              size=18, colour=ACCENT, align=PP_ALIGN.CENTER)
     add_rect(s, Inches(4.5), Inches(4.6), Inches(4.3), Pt(3), ACCENT)
@@ -368,9 +368,6 @@ def slide_asks(prs):
         add_text(s, detail, Inches(1.6), y + Pt(34), Inches(10.7), Inches(0.7),
                  size=17, colour=LIGHT_GREY)
 
-    add_text(s, "The signal is already in your data. You have 18 months of reviews and 11 million orders\nthat have never been asked this question.",
-             Inches(0.5), Inches(6.1), Inches(12.3), Inches(0.7),
-             size=16, colour=GOLD, italic=True, align=PP_ALIGN.CENTER)
 
 
 # ── Build the deck ────────────────────────────────────────────────────────────
