@@ -2,7 +2,7 @@
 
 **Problem solved:** 44% of Dhaga's returns land in a free-text "Other" box. Neha (Category Head) can only read a few hundred by hand per week. This tool classifies all of them, surfaces the root causes, and tells her exactly what to fix — without hiring an ML engineer.
 
-**Live URL:** _(deployed link goes here — use HuggingFace Spaces or Railway)_
+**Live URL:** https://dhaga-returns-intelligence-gjb4edycvf6wmxypkyv4jq.streamlit.app/
 
 ---
 
